@@ -1,0 +1,59 @@
+﻿<ContentDialog
+    x:Class="TaxManagerMent.SearchDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaxManagerMent"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TaxManagerMent.Model"
+    mc:Ignorable="d" MinHeight="240" MaxWidth="640" MaxHeight="480">
+
+    <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="319" Width="375">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="searchButton" Content="搜索" HorizontalAlignment="Center" Margin="0" Grid.Row="3" VerticalAlignment="Center" MinWidth="80" Click="searchButton_Click"/>
+        <Button x:Name="cancelButton" Content="取消" Grid.Column="2" HorizontalAlignment="Center" Margin="0" Grid.Row="3" VerticalAlignment="Center" MinWidth="80" Click="cancelButton_Click"/>
+        <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="搜索信息" VerticalAlignment="Center" FontSize="30" Grid.ColumnSpan="3"/>
+        <RadioButton x:Name="bothRadioButton" Content="混合" HorizontalAlignment="Left" Margin="6,8,-1,0" Grid.Row="1" VerticalAlignment="Top" GroupName="SearchStyle" Click="bothRadioButton_Click" IsChecked="True" />
+        <RadioButton x:Name="typeRadioButton" Content="类型" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" GroupName="SearchStyle" Click="typeRadioButton_Click" Grid.Column="1"/>
+        <RadioButton x:Name="dateRadioButton" Content="日期" Grid.Column="2" HorizontalAlignment="Center" Margin="0" Grid.Row="1" VerticalAlignment="Center" GroupName="SearchStyle" Click="dateRadioButton_Click"/>
+
+        <StackPanel x:Name="dateStackPanel" Grid.ColumnSpan="3" Margin="0" Grid.Row="2">
+            <Grid Height="147">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ComboBox x:Name="typeComboBox" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" MinWidth="64"
+                  ItemsSource="{x:Bind mTypeList,Mode=OneWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="data:TaxSetting">
+                            <TextBlock x:Name="itemsTextBlock" Text="{x:Bind TYPE}" MinWidth="100"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock x:Name="typeTextBlock" Margin="0" TextWrapping="Wrap" Text="类型" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0"/>
+                <TextBlock x:Name="startDateTextBlock" Margin="0" TextWrapping="Wrap" Text="开始日期" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1"/>
+                <TextBlock x:Name="endDateTextBlock" HorizontalAlignment="Left" Margin="0" Grid.Row="2" TextWrapping="Wrap" Text="结束日期" VerticalAlignment="Center"/>
+                <DatePicker x:Name="startDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center" MinWidth="240" Grid.Row="1"/>
+                <DatePicker x:Name="endDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="2" VerticalAlignment="Center" MinWidth="240"/>
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+</ContentDialog>

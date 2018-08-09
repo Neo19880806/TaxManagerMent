@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="TaxManagerMent.AddDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TaxManagerMent"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:TaxManagerMent.Model"
+    mc:Ignorable="d" Width="auto" Height="auto" Loaded="Page_Loaded">
+
+    <Grid HorizontalAlignment="Center" BorderThickness="1" BorderBrush="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="headTextBlock" Grid.Column="1" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" Text="添加信息" VerticalAlignment="Center" FontSize="30"/>
+        <TextBlock x:Name="typeTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="分类" VerticalAlignment="Center"/>
+        <TextBlock x:Name="valueTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="10" Grid.Row="2" TextWrapping="Wrap" Text="价格" VerticalAlignment="Center"/>
+        <TextBlock x:Name="timeTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="10" Grid.Row="3" TextWrapping="Wrap" Text="时间" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock1" Grid.Column="0" HorizontalAlignment="Left" Margin="10" Grid.Row="4" TextWrapping="Wrap" Text="备注" VerticalAlignment="Center"/>
+
+        <ComboBox x:Name="typeComboBox" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" VerticalAlignment="Top" MinWidth="64"
+                  ItemsSource="{x:Bind mTypeList,Mode=OneWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate x:DataType="data:TaxSetting">
+                    <TextBlock x:Name="itemsTextBlock" Text="{x:Bind TYPE}" MinWidth="100"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox x:Name="priceTextBox" Grid.Column="1" Margin="5" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Right"/>
+        <DatePicker x:Name="timeDatePicker" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" Grid.Row="3" VerticalAlignment="Center"/>
+        <RichEditBox x:Name="commentsRichEditBox" Grid.Column="1" Margin="5" Grid.Row="4"/>
+
+        <CheckBox x:Name="lockTypeCheckBox" Grid.ColumnSpan="2" Content="锁定" Grid.Column="3" HorizontalAlignment="Left" Margin="2" Grid.Row="1" VerticalAlignment="Top" MinWidth="80" Click="lockTypeCheckBox_Click"/>
+        <CheckBox x:Name="lockPriceCheckBox" Grid.ColumnSpan="2" Content="锁定" Grid.Column="3" HorizontalAlignment="Left" Margin="2" Grid.Row="2" VerticalAlignment="Top" MinWidth="80" Click="lockPriceCheckBox_Click"/>
+        <CheckBox x:Name="lockTimeCheckBox" Grid.ColumnSpan="2" Content="锁定" Grid.Column="3" HorizontalAlignment="Left" Margin="2" Grid.Row="3" VerticalAlignment="Top" MinWidth="80" Click="lockTimeCheckBox_Click"/>
+        <CheckBox x:Name="lockCommentsCheckBox" Grid.ColumnSpan="2" Content="锁定" Grid.Column="3" HorizontalAlignment="Left" Margin="2" Grid.Row="4" VerticalAlignment="Top" MinWidth="80" Click="lockCommentsCheckBox_Click"/>
+
+        <Button x:Name="confirmButton" Content="添加" Grid.Column="0" HorizontalAlignment="Center" Margin="5" Grid.Row="5" VerticalAlignment="Center" Click="confirmButton_Click" AccessKey=""/>
+        <Button x:Name="cancelButton" Content="取消" Grid.Column="2" HorizontalAlignment="Center" Margin="5" Grid.Row="5" VerticalAlignment="Center" Click="cancelButton_Click"/>
+        <Button x:Name="switchButton" Content="查看" Grid.Column="2" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Click="switchButton_Click"/>
+
+    </Grid>
+</Page>
